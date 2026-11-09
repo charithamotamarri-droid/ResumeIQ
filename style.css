@@ -1,0 +1,289 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: white;
+}
+
+header h2 span {
+    color: #6558e8;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 25px;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.analyzer {
+    max-width: 750px;
+    margin: 20px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.upload-box,
+.job-description {
+    margin-bottom: 25px;
+}
+
+.upload-box h2,
+.job-description h2 {
+    margin-bottom: 12px;
+}
+
+.upload-box p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+textarea {
+    width: 100%;
+    height: 160px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #6558e8;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5144d0;
+}
+.extracted-result {
+    margin-top: 30px;
+}
+
+.extracted-result h2 {
+    margin-bottom: 15px;
+}
+
+#resumeTextOutput {
+    background: #f5f7fb;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    min-height: 100px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* AI Analysis Results */
+.analysis-results {
+    margin-top: 40px;
+    padding: 25px;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.analysis-results h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1e293b;
+}
+
+.score-card,
+.result-card {
+    background: white;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.score-card {
+    text-align: center;
+}
+
+.score {
+    font-size: 42px;
+    font-weight: bold;
+    color: #2563eb;
+    margin-top: 10px;
+}
+
+.result-card h3 {
+    color: #1e293b;
+    margin-bottom: 15px;
+}
+
+/* Skill Tags */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.skill-tag.matched {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.skill-tag.missing {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Project Items */
+.project-item {
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.project-item h4 {
+    margin-bottom: 6px;
+    color: #2563eb;
+}
+
+.project-item p {
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* Analysis Lists */
+.result-card ul {
+    padding-left: 22px;
+}
+
+.result-card li {
+    margin-bottom: 10px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .analysis-results {
+        padding: 15px;
+    }
+
+    .score {
+        font-size: 34px;
+    }
+
+    .skill-tag {
+        font-size: 12px;
+    }
+}
+
+/* Circular ATS Score */
+.score-circle {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: conic-gradient(
+        #2563eb 0deg,
+        #2563eb 0deg,
+        #e2e8f0 0deg
+    );
+
+    transition: background 0.3s ease;
+}
+
+.score-inner {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-inner span {
+    font-size: 38px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.score-inner small {
+    color: #64748b;
+    font-size: 12px;
+}
+
+#downloadBtn {
+    display: block;
+    margin: 25px auto 10px;
+    padding: 13px 25px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#downloadBtn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+#resumeTextOutput mark {
+    background-color: #fef08a;
+    color: #713f12;
+    padding: 1px 2px;
+    border-radius: 3px;
+}

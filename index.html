@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h2>Resume<span>IQ</span></h2>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>AI-Powered Resume Analyzer</h1>
+            <p>
+                Analyze your resume, identify skill gaps,
+                and improve your chances of getting shortlisted.
+            </p>
+        </section>
+
+        <section class="analyzer">
+
+            <div class="upload-box">
+                <h2>Upload Your Resume</h2>
+                <p>Upload your resume in PDF format</p>
+
+                <input type="file" id="resumeFile" accept=".pdf">
+            </div>
+
+            <div class="job-description">
+                <h2>Job Description</h2>
+
+                <textarea
+                    id="jobDescription"
+                    placeholder="Paste the job description here..."
+                ></textarea>
+            </div>
+
+            <button id="analyzeBtn">Analyze Resume</button>
+            <div class="extracted-result">
+            <h2>Extracted Resume Text</h2>
+
+            <pre id="resumeTextOutput">
+                Your extracted resume text will appear here...
+            </pre>
+            </div>
+            
+        <!-- AI Analysis Results -->
+        <section class="analysis-results" id="analysisResults" hidden>
+
+            <h2>AI Resume Analysis</h2>
+
+            <!-- ATS Score -->
+            
+            <div class="score-card">
+                <h3>Overall ATS Match Score</h3>
+
+                <div class="score-circle" id="scoreCircle">
+                   <div class="score-inner">
+                        <span id="atsScore">0%</span>
+                        <small>Match Score</small>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Matched Skills -->
+            <div class="result-card">
+               <h3>Matched Technical Skills</h3>
+               <div id="matchedSkills" class="skills-container"></div>
+            </div>
+
+            <!-- Missing Skills -->
+            <div class="result-card">
+               <h3>Missing Technical Skills</h3>
+               <div id="missingSkills" class="skills-container"></div>
+            </div>
+            
+            <!-- Job Description Keyword Analysis -->
+            <div class="result-card">
+                <h3>Job Description Keywords Found</h3>
+                <div id="matchedKeywords" class="skills-container"></div>
+             </div>
+
+            <div class="result-card">
+                <h3>Missing Job Description Keywords</h3>
+                <div id="missingKeywords" class="skills-container"></div>
+            </div>
+ 
+
+            <!-- Relevant Projects -->
+            <div class="result-card">
+               <h3>Relevant Projects & Experience</h3>
+               <div id="relevantProjects"></div>
+            </div>
+
+            <!-- Strengths -->
+            <div class="result-card">
+              <h3>Resume Strengths</h3>
+              <ul id="resumeStrengths"></ul>
+            </div>
+
+            <!-- Improvements -->
+            <div class="result-card">
+               <h3>Areas of Improvement</h3>
+               <ul id="areasOfImprovement"></ul>
+            </div>
+
+            <!-- Suggestions -->
+            <div class="result-card">
+               <h3>Suggestions for Improvement</h3>
+               <ul id="improvementSuggestions"></ul>
+            </div>
+            <button id="downloadBtn">
+               Download Analysis as PDF
+            </button>
+
+        </section>
+        </section>
+    </main>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
