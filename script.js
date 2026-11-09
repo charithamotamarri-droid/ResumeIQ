@@ -3,12 +3,6 @@
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-const API_KEY = "YOUR_GEMINI_API_KEY";
-
-const MODEL = "gemini-3.5-flash-lite";
-
-const API_URL =
-    "https://generativelanguage.googleapis.com/v1beta/interactions";
 
 // Get HTML elements
 const resumeFile = document.getElementById("resumeFile");
@@ -145,81 +139,29 @@ JOB DESCRIPTION KEYWORD ANALYSIS:
 
     `;
 }
+
 async function callGeminiAPI(prompt) {
+    const response = await fetch("/api/analyze", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            prompt: prompt
+        })
+    });
 
-    const maxRetries = 3;
+    const result = await response.json();
 
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-
-        try {
-
-            const response = await fetch(API_URL, {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": API_KEY
-                },
-
-                body: JSON.stringify({
-
-                    model: MODEL,
-                    input: prompt,
-                    store: false
-
-                })
-
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-
-                // Retry only temporary server errors
-                if (response.status === 503 && attempt < maxRetries) {
-
-                    await new Promise(resolve =>
-                        setTimeout(resolve, attempt * 3000)
-                    );
-
-                    continue;
-                }
-
-                throw new Error(
-                    data.error?.message || "Gemini API request failed"
-                );
-
-            }
-
-            const result = data.steps
-                ?.filter(step => step.type === "model_output")
-                .flatMap(step => step.content || [])
-                .filter(item => item.type === "text")
-                .map(item => item.text)
-                .join("\n");
-
-            if (!result) {
-                throw new Error("Gemini returned an empty response.");
-            }
-
-            return result;
-
-        } catch (error) {
-
-            if (attempt === maxRetries) {
-                throw error;
-            }
-
-            if (!error.message.includes("503")) {
-                throw error;
-            }
-
-        }
-
+    if (!response.ok) {
+        throw new Error(
+            result.error || "Failed to analyze the resume."
+        );
     }
 
+    return result.text;
 }
+
 
 function parseGeminiResponse(result) {
 
